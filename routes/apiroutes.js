@@ -14,13 +14,14 @@ router.get('/notes', (req, res) =>
 
 router.post('/notes', (req, res) =>
   {
+      // gives the notes a unique ID in db.json
       const { title, text } = req.body
       const note = {
           title,
           text,
           id: uuidv4(),
       }
-      
+      // reading content of the db file than giving it a variable.
     readFromFile(`./db/db.json`, `utf8`).then(data => {
         const parsedData = JSON.parse(data);
         parsedData.push(note);
